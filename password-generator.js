@@ -3,7 +3,7 @@ function generateEasyPassword(length = 8) {
         throw new Error("Password length must be at least 8 characters.");
     }
 
-    const words = ["Sun", "Moon", "Star", "Sky", "Tree", "Leaf"];
+    const words = ["Sun", "Moon", "Star", "Sky", "Tree", "Leaf", "Waste", "Trash", "Water"];
     const randomWord1 = words[Math.floor(Math.random() * words.length)];
     const randomWord2 = words[Math.floor(Math.random() * words.length)];
     const number = Math.floor(Math.random() * 100);
