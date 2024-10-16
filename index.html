@@ -17,10 +17,12 @@
         }
         h1, h2 {
             margin: 10px;
+            text-align: center; /* Center text */
         }
         input {
             margin: 10px;
             padding: 5px;
+            text-align: center; /* Center input text */
         }
         button {
             padding: 5px 10px;
@@ -29,6 +31,10 @@
             max-width: 300px;
             height: auto;
         }
+        #result {
+            text-align: center; /* Center the result */
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
     </style>
 </head>
 <body>
@@ -36,7 +42,7 @@
     <h1>Password Generator</h1>
     <label for="length">Password Length (minimum 8, maximum 20):</label>
     <input type="number" id="length" value="8" min="8" max="20">
-    <button onclick="onGenerateButtonClick()">Generate Password</button>
+    <button onclick="onGenerateButtonClick()">Generate Passwords</button>
     <h2 id="result"></h2>
 
     <script src="password-generator.js"></script>
