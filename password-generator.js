@@ -32,12 +32,12 @@ function generateWordLikePassword(length) {
         "Seed", "Root", "Bark", "Branch", "Canopy",
         "Pond", "Swamp", "Cave", "Cliff", "Grove",
         "Terrain", "Plateau", "Canyon", "Archipelago", "Isle",
-        "Twilight", "Eclipse", "Aurora", "Zephyr", "Breeze",
+        "Twilight", "Trash", "Aurora", "Zephyr", "Breeze",
         "Tide", "Current", "Flood", "Drought", "Harvest",
         "Bloom", "Decay", "Cycle", "Nature", "Ecosystem"
     ];
     
-    const specialCharacters = '!@#$%&+;:,.?'; // Define special characters
+    const specialCharacters = '!@#$.?'; // Define special characters
 
     let password = '';
     
