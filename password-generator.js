@@ -1,4 +1,23 @@
-function generateEasyPassword(length) {
+function onGenerateButtonClick() {
+    const length = parseInt(document.getElementById('length').value);
+    if (length < 8 || length > 20) {
+        alert('Password length must be between 8 and 20 characters.');
+        return;
+    }
+    const passwords = generatePasswords(length, 5); // Generate 5 passwords
+    document.getElementById('result').innerText = passwords.join('\n'); // Display passwords
+}
+
+function generatePasswords(length, count) {
+    const passwords = new Set(); // Use a Set to avoid duplicates
+    while (passwords.size < count) {
+        const password = generateWordLikePassword(length);
+        passwords.add(password);
+    }
+    return Array.from(passwords);
+}
+
+function generateWordLikePassword(length) {
     const words = [
         "Sun", "Moon", "Star", "Sky", "Tree", "Leaf",
         "Cloud", "Ocean", "River", "Mountain", "Valley", 
@@ -18,39 +37,23 @@ function generateEasyPassword(length) {
         "Bloom", "Decay", "Cycle", "Nature", "Ecosystem"
     ];
     
-    const passwords = [];
-    
-    for (let i = 0; i < 5; i++) {
-        const randomWord1 = words[Math.floor(Math.random() * words.length)];
-        const randomWord2 = words[Math.floor(Math.random() * words.length)];
-        const number = Math.floor(Math.random() * 100);
-        const specialChars = "!@#$%^&*()_+";
-        const special = specialChars[Math.floor(Math.random() * specialChars.length)];
+    const specialCharacters = '!@#$%&+;:,.?'; // Define special characters
 
-        // Construct the password
-        let password = `${randomWord1}${number}${special}${randomWord2}`;
-        
-        // Ensure the password fits the desired length
-        password = password.slice(0, length);
-        
-        // If the password is too short, pad with random characters
-        while (password.length < length) {
-            password += randomWord1.charAt(Math.floor(Math.random() * randomWord1.length));
-        }
-        
-        passwords.push(password);
-    }
+    let password = '';
     
-    return passwords;
-}
-
-function onGenerateButtonClick() {
-    const lengthInput = document.getElementById("length").value;
-    const length = parseInt(lengthInput, 10);
-    try {
-        const passwords = generateEasyPassword(length);
-        document.getElementById("result").innerText = "Generated Passwords:\n" + passwords.join('\n');
-    } catch (error) {
-        alert(error.message);
+    // Create a basic structure by concatenating words
+    while (password.length < length - 1) {
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        password += randomWord;
     }
+
+    // Trim or slice to ensure the correct length and add a special character
+    password = password.slice(0, length - 1);
+
+    // Add a special character at a random position
+    const randomSpecialChar = specialCharacters.charAt(Math.floor(Math.random() * specialCharacters.length));
+    const insertPosition = Math.floor(Math.random() * password.length);
+    password = password.slice(0, insertPosition) + randomSpecialChar + password.slice(insertPosition);
+
+    return password;
 }
